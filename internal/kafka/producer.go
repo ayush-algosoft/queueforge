@@ -28,14 +28,14 @@ type Producer struct {
 	topology Topology
 }
 
-// NewProducer builds an idempotent franz-go producer.
+// NewProducer builds a franz-go producer with acks=all and snappy
+// compression. Topics are provisioned out-of-band by EnsureTopics.
 func NewProducer(brokers []string, clientID string, topology Topology) (*Producer, error) {
 	cli, err := kgo.NewClient(
 		kgo.SeedBrokers(brokers...),
 		kgo.ClientID(clientID),
 		kgo.ProducerBatchCompression(kgo.SnappyCompression()),
 		kgo.RequiredAcks(kgo.AllISRAcks()),
-		kgo.AllowAutoTopicCreation(),
 	)
 	if err != nil {
 		return nil, fmt.Errorf("kafka producer: %w", err)

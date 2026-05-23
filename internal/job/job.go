@@ -133,7 +133,6 @@ var (
 	ErrInvalidQueue    = errors.New("queue is required")
 	ErrInvalidJobType  = errors.New("jobType is required")
 	ErrInvalidPriority = errors.New("priority must be one of P0,P1,P2,P3")
-	ErrInvalidPayload  = errors.New("payload must be valid JSON")
 	ErrInvalidRetry    = errors.New("retry policy is invalid")
 )
 

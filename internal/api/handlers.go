@@ -1,7 +1,7 @@
-// Package api implements the HTTP surface QueueForge clients use to submit
-// and inspect jobs. The handlers are deliberately thin — all the interesting
-// logic lives in the storage layer; this file is mostly request validation,
-// dedup, rate-limiting, and shaping responses.
+// Package api implements the HTTP surface for QueueForge: submission,
+// inspection, cancellation, and queue statistics. Handlers are thin —
+// validation, deduplication, and rate-limiting only; durable logic lives
+// in the storage layer.
 package api
 
 import (

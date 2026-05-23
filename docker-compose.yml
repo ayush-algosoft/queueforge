@@ -28,7 +28,9 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: "1"
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: "1"
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      # Topics are created explicitly on API startup via EnsureTopics, so
+      # broker-side auto-creation is left off.
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
       CLUSTER_ID: "qf-cluster-0000000000000001"
     volumes:
       - kafka-data:/var/lib/kafka/data

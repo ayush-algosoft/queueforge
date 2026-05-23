@@ -27,10 +27,6 @@ import (
 //go:embed migrations/*.sql
 var migrationsFS embed.FS
 
-// MigrationsFS exposes the embedded migrations so callers (or external tools)
-// can apply them without depending on the on-disk migrations/ directory.
-func MigrationsFS() fs.FS { return migrationsFS }
-
 // ErrNotFound is returned when a single-row lookup matches nothing.
 var ErrNotFound = errors.New("job not found")
 
@@ -73,10 +69,8 @@ func (r *Repo) Close() { r.pool.Close() }
 // tests). Most code should prefer the typed methods on Repo.
 func (r *Repo) Pool() *pgxpool.Pool { return r.pool }
 
-// Migrate applies any embedded migrations whose name is not in the
-// schema_migrations table. The implementation is intentionally minimal — no
-// down migrations, no checksum verification — because the schema is small and
-// the embedded files are the source of truth.
+// Migrate applies any embedded *.up.sql migrations not already recorded in
+// schema_migrations. Forward-only — there is no down path.
 func (r *Repo) Migrate(ctx context.Context) error {
 	if _, err := r.pool.Exec(ctx, `
 		CREATE TABLE IF NOT EXISTS schema_migrations (

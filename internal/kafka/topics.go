@@ -2,19 +2,16 @@
 //
 // Topology:
 //
-//	<prefix>.jobs.p0          one topic per priority bucket — workers consume
-//	<prefix>.jobs.p1          these directly. Partitions parallelise within a
-//	<prefix>.jobs.p2          priority and the consumer group balances them
-//	<prefix>.jobs.p3          across worker pods.
+//	<prefix>.jobs.p0..p3    one topic per priority bucket; workers consume
+//	                        these directly. Partitions parallelise within a
+//	                        priority; the consumer group balances them.
+//	<prefix>.jobs.dlq       dead-letter topic for jobs whose retries are
+//	                        exhausted.
 //
-//	<prefix>.jobs.dlq         dead-letter topic. Failed jobs after retries
-//	                          land here and the recovery service can replay
-//	                          from it on operator instruction.
-//
-// Retries are *not* implemented with separate timed retry topics in this
-// build — instead, the worker writes the job back to Postgres with a future
-// run_at and the scheduler re-promotes it when it becomes due. That gives
-// arbitrary back-off precision without needing one topic per delay class.
+// Retries are time-shifted in Postgres (worker writes the row back to
+// pending with a future run_at) rather than via separate timed retry
+// topics. That gives arbitrary back-off precision without an explosion of
+// topics or consumer configs.
 package kafka
 
 import (

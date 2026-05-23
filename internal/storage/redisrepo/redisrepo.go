@@ -1,11 +1,11 @@
-// Package redisrepo hosts two distinct Redis-backed responsibilities:
+// Package redisrepo hosts two Redis-backed primitives:
 //
 //  1. A fast deduplication pre-check. Postgres has the authoritative unique
-//     index, but checking Redis first lets the API reject obvious duplicates
-//     without touching the database.
+//     index; this just lets the API reject obvious duplicates without a DB
+//     roundtrip.
 //
-//  2. A per-key token bucket rate limiter used by the API and by workers
-//     before calling out to third-party services.
+//  2. A fixed-window rate limiter for protecting downstream services or
+//     enforcing per-tenant submission caps.
 package redisrepo
 
 import (
@@ -67,16 +67,11 @@ func dedupKey(queue, key string) string {
 	return "qf:dedup:" + queue + ":" + key
 }
 
-// RateLimit is a token bucket allowing `capacity` tokens every `window`.
-// It is implemented with a single Redis Lua script so the increment + TTL set
-// is atomic across replicas.
+// RateLimit is a fixed-window counter allowing `capacity` requests per
+// `window`. Increment + TTL are set atomically via a Lua script.
 //
 // Returns (allowed, retryAfter). When allowed is false, retryAfter is the
-// duration the caller should wait before retrying.
-//
-// Semantics are "fixed window" — simpler than sliding-window or true token
-// bucket but sufficient for protecting downstream APIs from worker fleets,
-// which is the primary use case.
+// time the caller should wait before retrying.
 func (c *Client) RateLimit(ctx context.Context, key string, capacity int64, window time.Duration) (bool, time.Duration, error) {
 	if capacity <= 0 {
 		return true, 0, nil
