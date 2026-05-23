@@ -22,9 +22,9 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"github.com/queueforge/queueforge/internal/kafka"
-	"github.com/queueforge/queueforge/internal/metrics"
-	"github.com/queueforge/queueforge/internal/storage/postgres"
+	"github.com/ayush-algosoft/queueforge/internal/kafka"
+	"github.com/ayush-algosoft/queueforge/internal/metrics"
+	"github.com/ayush-algosoft/queueforge/internal/storage/postgres"
 )
 
 // Scheduler is the long-running service that drives promotion.

@@ -1,4 +1,4 @@
-module github.com/queueforge/queueforge
+module github.com/ayush-algosoft/queueforge
 
 go 1.23
 

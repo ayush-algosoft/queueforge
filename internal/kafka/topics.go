@@ -17,7 +17,7 @@ package kafka
 import (
 	"strings"
 
-	"github.com/queueforge/queueforge/internal/job"
+	"github.com/ayush-algosoft/queueforge/internal/job"
 )
 
 // Topology generates fully-qualified topic names for a given prefix.

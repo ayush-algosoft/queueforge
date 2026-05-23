@@ -267,9 +267,9 @@ Overview" dashboard provisioned automatically (anonymous Admin access).
 
 ```text
 $ go test ./internal/... -count=1
-ok  github.com/queueforge/queueforge/internal/handlers   0.778s
-ok  github.com/queueforge/queueforge/internal/job        0.776s
-ok  github.com/queueforge/queueforge/internal/kafka      0.753s
+ok  github.com/ayush-algosoft/queueforge/internal/handlers   0.778s
+ok  github.com/ayush-algosoft/queueforge/internal/job        0.776s
+ok  github.com/ayush-algosoft/queueforge/internal/kafka      0.753s
 ```
 
 ```text
@@ -283,7 +283,7 @@ $ QF_INTEGRATION=1 go test ./tests/integration -count=1 -v
 === RUN   TestDelayedJob
 --- PASS: TestDelayedJob (2.77s)
 PASS
-ok      github.com/queueforge/queueforge/tests/integration  5.023s
+ok      github.com/ayush-algosoft/queueforge/tests/integration  5.023s
 ```
 
 Unit tests and integration tests all pass.

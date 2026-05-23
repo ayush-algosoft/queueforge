@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/queueforge/queueforge/internal/kafka"
+	"github.com/ayush-algosoft/queueforge/internal/kafka"
 )
 
 func TestRegistry_Defaults(t *testing.T) {

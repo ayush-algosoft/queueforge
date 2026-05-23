@@ -29,12 +29,12 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/twmb/franz-go/pkg/kgo"
 
-	"github.com/queueforge/queueforge/internal/handlers"
-	"github.com/queueforge/queueforge/internal/job"
-	"github.com/queueforge/queueforge/internal/kafka"
-	"github.com/queueforge/queueforge/internal/metrics"
-	"github.com/queueforge/queueforge/internal/storage/postgres"
-	"github.com/queueforge/queueforge/internal/storage/redisrepo"
+	"github.com/ayush-algosoft/queueforge/internal/handlers"
+	"github.com/ayush-algosoft/queueforge/internal/job"
+	"github.com/ayush-algosoft/queueforge/internal/kafka"
+	"github.com/ayush-algosoft/queueforge/internal/metrics"
+	"github.com/ayush-algosoft/queueforge/internal/storage/postgres"
+	"github.com/ayush-algosoft/queueforge/internal/storage/redisrepo"
 )
 
 // Worker is the long-running process that drains priority topics.

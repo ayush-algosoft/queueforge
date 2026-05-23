@@ -14,7 +14,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/queueforge/queueforge/internal/kafka"
+	"github.com/ayush-algosoft/queueforge/internal/kafka"
 )
 
 // Result is returned by a handler on success. The bytes are persisted on the

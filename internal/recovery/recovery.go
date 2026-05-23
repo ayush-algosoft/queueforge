@@ -16,8 +16,8 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"github.com/queueforge/queueforge/internal/metrics"
-	"github.com/queueforge/queueforge/internal/storage/postgres"
+	"github.com/ayush-algosoft/queueforge/internal/metrics"
+	"github.com/ayush-algosoft/queueforge/internal/storage/postgres"
 )
 
 type Recovery struct {

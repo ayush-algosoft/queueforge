@@ -7,7 +7,7 @@ import (
 
 	"github.com/twmb/franz-go/pkg/kgo"
 
-	"github.com/queueforge/queueforge/internal/job"
+	"github.com/ayush-algosoft/queueforge/internal/job"
 )
 
 // Envelope is the payload we put on Kafka topics. It carries enough

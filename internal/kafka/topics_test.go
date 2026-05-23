@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/queueforge/queueforge/internal/job"
+	"github.com/ayush-algosoft/queueforge/internal/job"
 )
 
 func TestTopology_PriorityNames(t *testing.T) {

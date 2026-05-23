@@ -21,7 +21,7 @@ import (
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/queueforge/queueforge/internal/job"
+	"github.com/ayush-algosoft/queueforge/internal/job"
 )
 
 //go:embed migrations/*.sql
