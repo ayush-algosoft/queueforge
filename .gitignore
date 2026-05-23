@@ -1,0 +1,34 @@
+# Binaries
+/bin/
+/dist/
+*.exe
+*.test
+*.out
+
+# Go
+vendor/
+*.prof
+coverage.out
+coverage.html
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local env / data
+.env
+.env.local
+data/
+docker-volumes/
+tmp/
+
+# Logs
+*.log
+
+# Claude Code workspace state
+.claude/
+
+# Source brief — kept locally, not part of the public repo
+instructions.txt

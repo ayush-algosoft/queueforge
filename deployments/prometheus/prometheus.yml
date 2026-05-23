@@ -1,0 +1,26 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: queueforge-api
+    static_configs:
+      # API mounts /metrics on the same HTTP server as the public API so
+      # there's one listening socket per binary.
+      - targets: ["api:8080"]
+        labels: { component: api }
+
+  - job_name: queueforge-scheduler
+    static_configs:
+      - targets: ["scheduler:9091"]
+        labels: { component: scheduler }
+
+  - job_name: queueforge-worker
+    static_configs:
+      - targets: ["worker:9192"]
+        labels: { component: worker }
+
+  - job_name: queueforge-recovery
+    static_configs:
+      - targets: ["recovery:9093"]
+        labels: { component: recovery }
